@@ -28,10 +28,9 @@ Puppet::Type.type(:herokuconfig).provide(:default) do
   end
 
   def exists?
-    search = local_artifact_name
-    found = File.exists?(search)
-    Puppet.debug("Is it there? [#{search} == #{found}]")
-    found
+    # Since this type's job is to keep this file in sync with Heroku, we always
+    # want to fetch the latest
+    false
   end
 
   private
