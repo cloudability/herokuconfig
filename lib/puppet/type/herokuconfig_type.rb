@@ -1,4 +1,4 @@
-Puppet::Type.newtype(:herokuconfig) do
+Puppet::Type.newtype(:herokuconfig_type) do
   @doc = 'Retrieves Heroku config for a given app and populates a file with it'
 
   ensurable do

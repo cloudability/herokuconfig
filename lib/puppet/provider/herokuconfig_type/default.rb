@@ -1,14 +1,11 @@
-Puppet::Type.type(:herokuconfig).provide(:default) do
+Puppet::Type.type(:herokuconfig_type).provide(:default) do
+  confine(feature: :herokuapilib)
+
   desc('Get config from a Heroku app and put it in a dotenv style file')
 
   def create
     Puppet.debug("let's download some stuff")
     ensure_writable
-
-    Puppet.debug('requiring heroku gem')
-    # require fog here so we can install the gem before ruby/puppet tries to
-    # load it
-    require 'heroku-api'
 
     api_key = @resource[:heroku_api_key]
     heroku = Heroku::API.new(:api_key => api_key)
